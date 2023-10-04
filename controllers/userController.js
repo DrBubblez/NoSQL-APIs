@@ -55,3 +55,35 @@ exports.deleteUser = async (req, res) => { // This deletes a user by id
         res.status(400).json({ message:'Error deleting user', error });
     }
 };
+
+exports.addFriend = async (req, res) => { // This adds a friend to a user's friend list
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { $push: { friends: req.params.friendId } },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(400).json({ message:'Error adding friend', error });
+    }
+};
+
+exports.removeFriend = async (req, res) => { // This removes a friend from a user's friend list
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            { $pull: { friends: req.params.friendId } },
+            { new: true }
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(400).json({ message:'Error removing friend', error });
+    }
+};
