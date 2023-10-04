@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const {
     getAllThoughts,
-    getThoughtById,
+    getSingleThought,
     createThought,
     updateThought,
     deleteThought,
     addReaction,
     removeReaction
-} = require('../../controllers/thought-controller');
+} = require('../../controllers/thoughtController');
 
 // GET all thoughts
 router.get('/thoughts', getAllThoughts);
 
 // GET a single thought by its id
-router.get('/thoughts/:id', getThoughtById);
+router.get('/thoughts/:id', getSingleThought);
 
 // Create a new thought
 router.post('/thoughts', createThought);
