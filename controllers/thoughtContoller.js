@@ -66,3 +66,35 @@ exports.deleteThought = async (req, res) => { // This deletes a thought by id
         res.status(400).json({ message:'Error deleting thought', error });
     }
 };
+
+exports.addReaction = async (req, res) => { // This adds a reaction to a thought
+    try {
+        const thought = await Thought.findByIdAndUpdate(
+            req.params.id,
+            { $push: { reactions: req.body } },
+            { new: true }
+        );
+        if (!thought) {
+            return res.status(404).json({ message: 'Thought not found' });
+        }
+        res.status(200).json({ thought });
+    } catch (error) {
+        res.status(400).json({ message:'Error adding reaction', error });
+    }
+};
+
+exports.removeReaction = async (req, res) => { // This removes a reaction from a thought
+    try {
+        const thought = await Thought.findByIdAndUpdate(
+            req.params.id,
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { new: true }
+        );
+        if (!thought) {
+            return res.status(404).json({ message: 'Thought not found' });
+        }
+        res.status(200).json({ thought });
+    } catch (error) {
+        res.status(400).json({ message:'Error removing reaction', error });
+    }
+};
