@@ -39,7 +39,7 @@ exports.createThought = async (req, res) => { // This creates a thought
 
 exports.updateThought = async (req, res) => { // This updates a thought by id
     try {
-        const updatedThought = await Thought.findOneAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        const updatedThought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!updatedThought) {
             return res.status(404).json({ message: 'Thought not found' });
         }

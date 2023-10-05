@@ -6,7 +6,7 @@ This is a back-end application that allows users to create, read, update, and de
 This was designed in the context of a social media application, where users can create accounts, add friends, and share their thoughts. The application allows users to create, read, update, and delete users, thoughts, and reactions. Users can also add and remove friends from their friend list.
 
 ## Walkthrough Video
-[Click Me!]()
+[Click Me!](https://youtu.be/4LSi0Z1WYRA)
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
