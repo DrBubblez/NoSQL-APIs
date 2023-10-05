@@ -26,7 +26,7 @@ exports.createThought = async (req, res) => { // This creates a thought
         const thought = new Thought(req.body);
         await thought.save();
         
-        await  User.findOneAndUpdate(
+        await User.findOneAndUpdate(
             { _id: req.body.userId },
             { $push: { thoughts: thought._id } },
             { new: true }
